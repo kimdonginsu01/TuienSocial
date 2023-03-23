@@ -3,24 +3,49 @@ import FavoriteOutlinedIcon from "@mui/icons-material/FavoriteOutlined";
 import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 import ShareOutlinedIcon from "@mui/icons-material/ShareOutlined";
 import TextsmsOutlinedIcon from "@mui/icons-material/TextsmsOutlined";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import moment from "moment";
+import makeRequest from "../../axios/axios";
+import { useContext, useState } from "react";
 
-import "./post.scss";
-import { useState } from "react";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../context/authContext";
+import "./post.scss";
 import Comments from "../comments/Comments";
 
 function Post({ post }) {
   const [commentOpen, setCommentOpen] = useState(false);
 
-  const liked = false;
+  const { currentUser } = useContext(AuthContext);
+
+  const { isLoading, error, data } = useQuery({
+    queryKey: ["likes", post.id],
+    queryFn: () =>
+      makeRequest.get("/likes?postId=" + post.id).then((res) => res.data),
+  });
+
+  const queryClient = useQueryClient();
+  const mutation = useMutation({
+    mutationFn: (liked) => {
+      return liked
+        ? makeRequest.delete("/likes?postId=" + post.id)
+        : makeRequest.post("/likes", { postId: post.id });
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["likes"] });
+    },
+  });
+
+  const handleLike = () => {
+    mutation.mutate(data?.includes(currentUser.id));
+  };
 
   return (
     <div className="post">
       <div className="container">
         <div className="user">
           <div className="userInfo">
-            <img src={post.profilePic} alt="" />
+            <img src={"/upload/" + post.profilePic} alt="" />
             <div className="details">
               <Link
                 to={`/profile/${post.userId}`}
@@ -35,12 +60,18 @@ function Post({ post }) {
         </div>
         <div className="content">
           <p>{post.desc}</p>
-          <img src={"./upload/" + post.img} alt="" />
+          <img src={"/upload/" + post.img} alt="" />
         </div>
         <div className="info">
-          <div className="item">
-            {liked ? <FavoriteOutlinedIcon /> : <FavoriteBorderOutlinedIcon />}
-            12 Likes
+          <div className="item" onClick={handleLike}>
+            {isLoading ? (
+              "Loading"
+            ) : data?.includes(currentUser.id) ? (
+              <FavoriteOutlinedIcon style={{ color: "red" }} />
+            ) : (
+              <FavoriteBorderOutlinedIcon />
+            )}
+            {data?.length} Likes
           </div>
           <div className="item" onClick={() => setCommentOpen(!commentOpen)}>
             <TextsmsOutlinedIcon />

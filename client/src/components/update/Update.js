@@ -55,13 +55,19 @@ const Update = ({ setOpenUpdate, user, userId, setCurrentUser }) => {
     profileUrl = profile ? await upload(profile) : user?.profilePic;
 
     // TODO: set current user in localStorage when update
-    mutation.mutate({ ...texts, coverPic: coverUrl, profilePic: profileUrl });
-    // setCurrentUser({
-    //   id: userId,
-    //   ...texts,
-    //   coverPic: coverUrl,
-    //   profilePic: profileUrl,
-    // });
+    await mutation.mutate({
+      ...texts,
+      coverPic: coverUrl,
+      profilePic: profileUrl,
+    });
+
+    setCurrentUser((prev) => ({
+      ...prev,
+      ...texts,
+      coverPic: coverUrl,
+      profilePic: profileUrl,
+    }));
+
     setOpenUpdate(false);
     setCover(null);
     setProfile(null);

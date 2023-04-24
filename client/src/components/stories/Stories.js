@@ -31,13 +31,17 @@ function Stories() {
   return (
     <div className="stories">
       <div className="story">
-        <img src={"/upload/" + currentUser.profilePic} alt="" />
+        <div className="img">
+          <img src={"/upload/" + currentUser.profilePic} alt="" />
+        </div>
         <span>{currentUser.name}</span>
         <button>+</button>
       </div>
       {stories.map((story) => (
         <div className="story" key={story.id}>
-          <img src={story.img} alt="" />
+          <div className="img">
+            <img src={story.img} alt="" />
+          </div>
           <span>{story.name}</span>
         </div>
       ))}

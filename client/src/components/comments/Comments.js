@@ -4,6 +4,7 @@ import { useContext, useState } from "react";
 
 import makeRequest from "../../axios/axios";
 import { AuthContext } from "../../context/authContext";
+import Loading from "../loading/Loading";
 import "./comments.scss";
 
 function Comments({ postId }) {
@@ -44,20 +45,20 @@ function Comments({ postId }) {
         />
         <button onClick={handleClick}>Send</button>
       </div>
-      {isLoading
-        ? "Loading"
-        : data.map((comment) => (
-            <div className="comment" key={comment.id}>
-              <img src={comment.profilePic} alt="" />
-              <div className="info">
-                <span>{comment.name}</span>
-                <p>{comment.desc}</p>
-              </div>
-              <span className="date">
-                {moment(comment.createdAt).fromNow()}
-              </span>
+      {isLoading ? (
+        <Loading />
+      ) : (
+        data.map((comment) => (
+          <div className="comment" key={comment.id}>
+            <img src={comment.profilePic} alt="" />
+            <div className="info">
+              <span>{comment.name}</span>
+              <p>{comment.desc}</p>
             </div>
-          ))}
+            <span className="date">{moment(comment.createdAt).fromNow()}</span>
+          </div>
+        ))
+      )}
     </div>
   );
 }

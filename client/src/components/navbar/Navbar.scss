@@ -32,6 +32,7 @@
         border: 1px solid themed("border");
         border-radius: 5px;
         padding: 5px;
+        position: relative;
 
         input {
           width: 500px;
@@ -46,6 +47,49 @@
 
           @include tablet {
             width: 200px;
+          }
+        }
+
+        .searchResult {
+          min-width: 250px;
+          padding: 0;
+          list-style: none;
+          position: absolute;
+          top: 38px;
+          left: 0;
+          border-radius: 4px;
+          background-color: themed("bgSoft");
+          box-shadow: 2px 2px 4px themed("textColorSoft");
+          overflow: hidden;
+
+          li {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            padding: 10px;
+            cursor: pointer;
+
+            &:hover {
+              background-color: themed("bg");
+            }
+
+            img {
+              width: 30px;
+              height: 30px;
+              border-radius: 50%;
+              object-fit: cover;
+              margin-right: 8px;
+            }
+
+            span {
+              font-size: 14px;
+              color: themed("textColor");
+
+              span {
+                font-size: 12px;
+                color: themed("textColorSoft");
+              }
+            }
           }
         }
       }

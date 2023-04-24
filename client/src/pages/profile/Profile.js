@@ -11,6 +11,7 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useContext, useState } from "react";
 import { useLocation } from "react-router-dom";
 import makeRequest from "../../axios/axios";
+import Loading from "../../components/loading/Loading";
 import Posts from "../../components/posts/Posts";
 import Update from "../../components/update/Update";
 import { AuthContext } from "../../context/authContext";
@@ -23,7 +24,7 @@ const Profile = () => {
   const userId = parseInt(useLocation().pathname.split("/")[2]);
 
   const { isLoading, error, data } = useQuery({
-    queryKey: ["user"],
+    queryKey: ["user", userId],
     queryFn: () =>
       makeRequest.get("/users/find/" + userId).then((res) => res.data),
   });
@@ -48,14 +49,14 @@ const Profile = () => {
     },
   });
 
-  const handleFollow = () => {
-    mutation.mutate(relationshipData?.includes(currentUser.id));
+  const handleFollow = async () => {
+    await mutation.mutate(relationshipData?.includes(currentUser.id));
   };
 
   return (
     <div className="profile">
       {isLoading ? (
-        "Loading"
+        <Loading />
       ) : (
         <>
           <div className="images">

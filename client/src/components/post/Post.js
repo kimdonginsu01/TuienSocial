@@ -12,6 +12,7 @@ import { Link } from "react-router-dom";
 import { AuthContext } from "../../context/authContext";
 import "./post.scss";
 import Comments from "../comments/Comments";
+import Loading from "../loading/Loading";
 
 function Post({ post }) {
   const [commentOpen, setCommentOpen] = useState(false);
@@ -81,7 +82,7 @@ function Post({ post }) {
         <div className="info">
           <div className="item" onClick={handleLike}>
             {isLoading ? (
-              "Loading"
+              <Loading />
             ) : data?.includes(currentUser.id) ? (
               <FavoriteOutlinedIcon style={{ color: "red" }} />
             ) : (

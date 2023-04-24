@@ -8,10 +8,12 @@ function RightBar() {
           <span>Suggestions For You</span>
           <div className="user">
             <div className="userInfo">
-              <img
-                src="https://images.pexels.com/photos/3228727/pexels-photo-3228727.jpeg?auto=compress&cs=tinysrgb&w=1600"
-                alt=""
-              />
+              <div className="userImg">
+                <img
+                  src="https://images.pexels.com/photos/3228727/pexels-photo-3228727.jpeg?auto=compress&cs=tinysrgb&w=1600"
+                  alt=""
+                />
+              </div>
               <span>Jane Doe</span>
             </div>
             <div className="buttons">
@@ -21,10 +23,12 @@ function RightBar() {
           </div>
           <div className="user">
             <div className="userInfo">
-              <img
-                src="https://images.pexels.com/photos/3228727/pexels-photo-3228727.jpeg?auto=compress&cs=tinysrgb&w=1600"
-                alt=""
-              />
+              <div className="userImg">
+                <img
+                  src="https://images.pexels.com/photos/3228727/pexels-photo-3228727.jpeg?auto=compress&cs=tinysrgb&w=1600"
+                  alt=""
+                />
+              </div>
               <span>Jane Doe</span>
             </div>
             <div className="buttons">
@@ -37,10 +41,12 @@ function RightBar() {
           <span>Latest Activities</span>
           <div className="user">
             <div className="userInfo">
-              <img
-                src="https://images.pexels.com/photos/3228727/pexels-photo-3228727.jpeg?auto=compress&cs=tinysrgb&w=1600"
-                alt=""
-              />
+              <div className="userImg">
+                <img
+                  src="https://images.pexels.com/photos/3228727/pexels-photo-3228727.jpeg?auto=compress&cs=tinysrgb&w=1600"
+                  alt=""
+                />
+              </div>
               <p>
                 <span>Jane Doe</span> changed their cover picture
               </p>
@@ -49,10 +55,12 @@ function RightBar() {
           </div>
           <div className="user">
             <div className="userInfo">
-              <img
-                src="https://images.pexels.com/photos/3228727/pexels-photo-3228727.jpeg?auto=compress&cs=tinysrgb&w=1600"
-                alt=""
-              />
+              <div className="userImg">
+                <img
+                  src="https://images.pexels.com/photos/3228727/pexels-photo-3228727.jpeg?auto=compress&cs=tinysrgb&w=1600"
+                  alt=""
+                />
+              </div>
               <p>
                 <span>Jane Doe</span> changed their cover picture
               </p>
@@ -61,10 +69,12 @@ function RightBar() {
           </div>
           <div className="user">
             <div className="userInfo">
-              <img
-                src="https://images.pexels.com/photos/3228727/pexels-photo-3228727.jpeg?auto=compress&cs=tinysrgb&w=1600"
-                alt=""
-              />
+              <div className="userImg">
+                <img
+                  src="https://images.pexels.com/photos/3228727/pexels-photo-3228727.jpeg?auto=compress&cs=tinysrgb&w=1600"
+                  alt=""
+                />
+              </div>
               <p>
                 <span>Jane Doe</span> changed their cover picture
               </p>
@@ -76,30 +86,36 @@ function RightBar() {
           <span>Online Friends</span>
           <div className="user">
             <div className="userInfo">
-              <img
-                src="https://images.pexels.com/photos/3228727/pexels-photo-3228727.jpeg?auto=compress&cs=tinysrgb&w=1600"
-                alt=""
-              />
+              <div className="userImg">
+                <img
+                  src="https://images.pexels.com/photos/3228727/pexels-photo-3228727.jpeg?auto=compress&cs=tinysrgb&w=1600"
+                  alt=""
+                />
+              </div>
               <div className="online"></div>
               <span>Jane Doe</span>
             </div>
           </div>
           <div className="user">
             <div className="userInfo">
-              <img
-                src="https://images.pexels.com/photos/3228727/pexels-photo-3228727.jpeg?auto=compress&cs=tinysrgb&w=1600"
-                alt=""
-              />
+              <div className="userImg">
+                <img
+                  src="https://images.pexels.com/photos/3228727/pexels-photo-3228727.jpeg?auto=compress&cs=tinysrgb&w=1600"
+                  alt=""
+                />
+              </div>
               <div className="online"></div>
               <span>Jane Doe</span>
             </div>
           </div>
           <div className="user">
             <div className="userInfo">
-              <img
-                src="https://images.pexels.com/photos/3228727/pexels-photo-3228727.jpeg?auto=compress&cs=tinysrgb&w=1600"
-                alt=""
-              />
+              <div className="userImg">
+                <img
+                  src="https://images.pexels.com/photos/3228727/pexels-photo-3228727.jpeg?auto=compress&cs=tinysrgb&w=1600"
+                  alt=""
+                />
+              </div>
               <div className="online"></div>
               <span>Jane Doe</span>
             </div>

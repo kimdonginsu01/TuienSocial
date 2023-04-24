@@ -1,6 +1,20 @@
 import { db } from "../connect.js";
 import jwt from "jsonwebtoken";
 
+export const getAllUser = (req, res) => {
+  // TODO:
+  const name = req.query.q;
+
+  const q = "SELECT * FROM users WHERE name LIKE ? LIMIT 5";
+
+  db.query(q, [`%${name}%`], (err, data) => {
+    if (err) return res.status(500).json(err);
+
+    data = data.map(({ password, ...info }) => info);
+    return res.status(200).json(data);
+  });
+};
+
 export const getUser = (req, res) => {
   // TODO:
   const userId = req.params.userId;

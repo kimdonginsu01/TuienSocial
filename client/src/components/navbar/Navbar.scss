@@ -19,6 +19,10 @@
       align-items: center;
       gap: 30px;
 
+      .icon {
+        cursor: pointer;
+      }
+
       span {
         font-weight: bold;
         font-size: 20px;
@@ -100,6 +104,10 @@
       align-items: center;
       gap: 20px;
 
+      .icon {
+        cursor: pointer;
+      }
+
       @include mobile {
         display: none;
       }
@@ -109,6 +117,8 @@
         align-items: center;
         gap: 10px;
         font-weight: 500;
+        cursor: pointer;
+        position: relative;
 
         @include tablet {
           display: none;
@@ -122,6 +132,42 @@
         }
 
         span {
+          user-select: none;
+        }
+
+        .user-action {
+          position: absolute;
+          background: themed("bgSoft");
+          top: calc(100% + 6px);
+          left: 0;
+          right: 0;
+          border-radius: 4px;
+          box-shadow: 2px 2px 4px themed("textColorSoft");
+
+          &::before {
+            content: "";
+            height: 8px;
+            position: absolute;
+            top: -8px;
+            right: 0;
+            left: 0;
+          }
+
+          p {
+            padding: 12px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: space-evenly;
+
+            &:hover {
+              background-color: themed("bg");
+            }
+          }
+
+          .logout {
+            border-top: 1px solid #ccc;
+          }
         }
       }
     }

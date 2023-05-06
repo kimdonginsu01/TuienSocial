@@ -7,6 +7,8 @@ import NotificationsOutlinedIcon from "@mui/icons-material/NotificationsOutlined
 import EmailOutlinedIcon from "@mui/icons-material/EmailOutlined";
 import PersonOutlinedIcon from "@mui/icons-material/PersonOutlined";
 import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
+import SettingsOutlinedIcon from "@mui/icons-material/SettingsOutlined";
+import LogoutOutlinedIcon from "@mui/icons-material/LogoutOutlined";
 import { Link, useNavigate } from "react-router-dom";
 
 import "./Navbar.scss";
@@ -19,8 +21,9 @@ function Navbar() {
   const [search, setSearch] = useState("");
   const [usersList, setUsersList] = useState([]);
   const [showResult, setShowResult] = useState(false);
+  const [showAction, setShowAction] = useState(false);
   const { darkMode, toggle } = useContext(DarkModeContext);
-  const { currentUser } = useContext(AuthContext);
+  const { currentUser, setCurrentUser } = useContext(AuthContext);
 
   const navigate = useNavigate();
 
@@ -56,19 +59,24 @@ function Navbar() {
     setSearch("");
   };
 
+  const handleLogout = () => {
+    navigate("/login");
+    setCurrentUser({});
+  };
+
   return (
     <div className="navbar">
       <div className="left">
         <Link to="/" style={{ textDecoration: "none" }}>
           <span>tuensocial</span>
         </Link>
-        <HomeOutlinedIcon />
+        <HomeOutlinedIcon className="icon" />
         {darkMode ? (
-          <WbSunnyOutlinedIcon onClick={toggle} />
+          <WbSunnyOutlinedIcon onClick={toggle} className="icon" />
         ) : (
-          <DarkModeOutlinedIcon onClick={toggle} />
+          <DarkModeOutlinedIcon onClick={toggle} className="icon" />
         )}
-        <GridViewOutlinedIcon />
+        <GridViewOutlinedIcon className="icon" />
         <div className="search">
           <SearchOutlinedIcon />
           <input
@@ -96,12 +104,28 @@ function Navbar() {
         </div>
       </div>
       <div className="right">
-        <PersonOutlinedIcon />
-        <EmailOutlinedIcon />
-        <NotificationsOutlinedIcon />
-        <div className="user">
+        <PersonOutlinedIcon className="icon" />
+        <EmailOutlinedIcon className="icon" />
+        <NotificationsOutlinedIcon className="icon" />
+        <div
+          className="user"
+          onMouseOver={() => setShowAction(true)}
+          onMouseLeave={() => setShowAction(false)}
+        >
           <img src={"/upload/" + currentUser.profilePic} alt="" />
           <span>{currentUser.name}</span>
+          {showAction && (
+            <div className="user-action">
+              <p>
+                <SettingsOutlinedIcon />
+                Settings
+              </p>
+              <p className="logout" onClick={handleLogout}>
+                <LogoutOutlinedIcon />
+                Logout
+              </p>
+            </div>
+          )}
         </div>
       </div>
     </div>

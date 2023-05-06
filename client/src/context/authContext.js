@@ -17,7 +17,7 @@ export const AuthContextProvider = ({ children }) => {
       }
     );
 
-    setCurrentUser(res.data);
+    setCurrentUser(() => res.data);
   };
 
   useEffect(() => {

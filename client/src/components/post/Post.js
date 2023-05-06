@@ -20,10 +20,16 @@ function Post({ post }) {
 
   const { currentUser } = useContext(AuthContext);
 
-  const { isLoading, error, data } = useQuery({
+  const { isLoading, data } = useQuery({
     queryKey: ["likes", post.id],
     queryFn: () =>
       makeRequest.get("/likes?postId=" + post.id).then((res) => res.data),
+  });
+
+  const { data: commentsData } = useQuery({
+    queryKey: ["comments", post.id],
+    queryFn: () =>
+      makeRequest.get("/comments?postId=" + post.id).then((res) => res.data),
   });
 
   const queryClient = useQueryClient();
@@ -92,11 +98,11 @@ function Post({ post }) {
           </div>
           <div className="item" onClick={() => setCommentOpen(!commentOpen)}>
             <TextsmsOutlinedIcon />
-            12 Comments
+            {commentsData?.length} Comments
           </div>
           <div className="item">
             <ShareOutlinedIcon />
-            12 Shares
+            Shares
           </div>
         </div>
         {commentOpen && <Comments postId={post.id} />}

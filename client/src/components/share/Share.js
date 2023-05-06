@@ -1,10 +1,12 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useContext, useState } from "react";
 import Friend from "../../assets/friend.png";
+import ImageIcon from "../../assets/img.png";
 import Map from "../../assets/map.png";
 import makeRequest from "../../axios/axios";
 import { AuthContext } from "../../context/authContext";
 import "./share.scss";
+import Image from "../image/Image";
 
 const Share = () => {
   const [file, setFile] = useState(null);
@@ -42,12 +44,18 @@ const Share = () => {
     setDesc("");
     setFile(null);
   };
+
+  const handleCanle = () => {
+    setDesc("");
+    setFile(null);
+  };
+
   return (
     <div className="share">
       <div className="container">
         <div className="top">
           <div className="left">
-            <img src={"/upload/" + currentUser.profilePic} alt="" />
+            <Image src={currentUser.profilePic} alt="" />
             <input
               type="text"
               placeholder={`What's on your mind ${currentUser.name}?`}
@@ -72,7 +80,7 @@ const Share = () => {
             />
             <label htmlFor="file">
               <div className="item">
-                <img src={Image} alt="" />
+                <img src={ImageIcon} alt="" />
                 <span>Add Image</span>
               </div>
             </label>
@@ -86,6 +94,16 @@ const Share = () => {
             </div>
           </div>
           <div className="right">
+            {(file || desc) && (
+              <button
+                style={{
+                  backgroundColor: "#f0544f",
+                }}
+                onClick={handleCanle}
+              >
+                Cancel
+              </button>
+            )}
             <button onClick={handleClick}>Share</button>
           </div>
         </div>

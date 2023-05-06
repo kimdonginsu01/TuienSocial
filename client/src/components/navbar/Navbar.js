@@ -93,7 +93,7 @@ function Navbar() {
             <ul className="searchResult">
               {usersList.map((user) => (
                 <li onClick={() => handleUserClick(user.id)} key={user.id}>
-                  <img src={"/upload/" + user.profilePic} alt="" />
+                  <Image src={user.profilePic} alt="" />
                   <span>
                     <p>{user.name}</p>
                     <span>{user.username}</span>

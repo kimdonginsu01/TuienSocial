@@ -94,6 +94,10 @@
             background-color: #5271ff;
             border-radius: 3px;
           }
+
+          button + button {
+            margin-left: 16px;
+          }
         }
       }
     }

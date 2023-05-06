@@ -79,3 +79,24 @@ export const getFriends = (req, res) => {
     });
   });
 };
+
+export const getPotentialFriends = (req, res) => {
+  const token = req.cookies.accesstoken;
+  if (!token) return res.status(401).json("Not logged in!");
+
+  jwt.verify(token, "secret_key", (err, userInfo) => {
+    if (err) return res.status(403).json("Token is not valid");
+
+    const q =
+      "SELECT u.* FROM users u JOIN relationships r ON u.id = r.followedUserId WHERE r.followerUserId IN ( SELECT r.followedUserId FROM relationships r WHERE r.followerUserId = ?) AND u.id <> ? LIMIT 5";
+
+    const userId = req.params.userId;
+
+    db.query(q, [userId, userId], (err, data) => {
+      if (err) return res.status(500).json(err);
+
+      data = data.map(({ password, ...info }) => info);
+      return res.status(200).json(data);
+    });
+  });
+};

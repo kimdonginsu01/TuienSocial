@@ -1,21 +1,22 @@
-import { useContext, useEffect, useState } from "react";
-import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
 import DarkModeOutlinedIcon from "@mui/icons-material/DarkModeOutlined";
-import WbSunnyOutlinedIcon from "@mui/icons-material/WbSunnyOutlined";
-import GridViewOutlinedIcon from "@mui/icons-material/GridViewOutlined";
-import NotificationsOutlinedIcon from "@mui/icons-material/NotificationsOutlined";
 import EmailOutlinedIcon from "@mui/icons-material/EmailOutlined";
+import GridViewOutlinedIcon from "@mui/icons-material/GridViewOutlined";
+import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
+import LogoutOutlinedIcon from "@mui/icons-material/LogoutOutlined";
+import NotificationsOutlinedIcon from "@mui/icons-material/NotificationsOutlined";
 import PersonOutlinedIcon from "@mui/icons-material/PersonOutlined";
 import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
 import SettingsOutlinedIcon from "@mui/icons-material/SettingsOutlined";
-import LogoutOutlinedIcon from "@mui/icons-material/LogoutOutlined";
+import WbSunnyOutlinedIcon from "@mui/icons-material/WbSunnyOutlined";
+import { useContext, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
-import "./Navbar.scss";
-import { DarkModeContext } from "../../context/darkModeContext";
-import { AuthContext } from "../../context/authContext";
 import makeRequest from "../../axios/axios";
+import { AuthContext } from "../../context/authContext";
+import { DarkModeContext } from "../../context/darkModeContext";
 import useDebounce from "../../hooks/useDebounce";
+import Image from "../image/Image";
+import "./Navbar.scss";
 
 function Navbar() {
   const [search, setSearch] = useState("");
@@ -112,7 +113,7 @@ function Navbar() {
           onMouseOver={() => setShowAction(true)}
           onMouseLeave={() => setShowAction(false)}
         >
-          <img src={"/upload/" + currentUser.profilePic} alt="" />
+          <Image src={currentUser.profilePic} alt="" />
           <span>{currentUser.name}</span>
           {showAction && (
             <div className="user-action">

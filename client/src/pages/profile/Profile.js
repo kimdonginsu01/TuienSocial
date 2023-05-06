@@ -16,6 +16,7 @@ import Posts from "../../components/posts/Posts";
 import Update from "../../components/update/Update";
 import { AuthContext } from "../../context/authContext";
 import "./profile.scss";
+import Image from "../../components/image/Image";
 
 const Profile = () => {
   const [openUpdate, setOpenUpdate] = useState(false);
@@ -61,11 +62,7 @@ const Profile = () => {
         <>
           <div className="images">
             <img src={"/upload/" + data.coverPic} alt="" className="cover" />
-            <img
-              src={"/upload/" + data.profilePic}
-              alt=""
-              className="profilePic"
-            />
+            <Image src={data.profilePic} alt="" className="profilePic" />
           </div>
           <div className="profileContainer">
             <div className="uInfo">

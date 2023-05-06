@@ -1,8 +1,8 @@
+import CloudUploadIcon from "@mui/icons-material/CloudUpload";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useState } from "react";
 import makeRequest from "../../axios/axios";
 import "./update.scss";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
-import CloudUploadIcon from "@mui/icons-material/CloudUpload";
 
 const Update = ({ setOpenUpdate, user, userId, setCurrentUser }) => {
   const [cover, setCover] = useState(null);

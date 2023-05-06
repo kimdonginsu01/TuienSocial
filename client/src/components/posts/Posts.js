@@ -6,7 +6,7 @@ import Loading from "../loading/Loading";
 
 function Posts({ userId }) {
   const { isLoading, error, data } = useQuery({
-    queryKey: ["posts"],
+    queryKey: ["posts", userId],
     queryFn: () =>
       userId
         ? makeRequest.get("/posts?userId=" + userId).then((res) => res.data)

@@ -5,14 +5,15 @@ import ShareOutlinedIcon from "@mui/icons-material/ShareOutlined";
 import TextsmsOutlinedIcon from "@mui/icons-material/TextsmsOutlined";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import moment from "moment";
-import makeRequest from "../../axios/axios";
 import { useContext, useState } from "react";
+import makeRequest from "../../axios/axios";
 
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../context/authContext";
-import "./post.scss";
 import Comments from "../comments/Comments";
 import Loading from "../loading/Loading";
+import "./post.scss";
+import Image from "../image/Image";
 
 function Post({ post }) {
   const [commentOpen, setCommentOpen] = useState(false);
@@ -65,7 +66,7 @@ function Post({ post }) {
       <div className="container">
         <div className="user">
           <div className="userInfo">
-            <img src={"/upload/" + post.profilePic} alt="" />
+            <Image src={post.profilePic} alt="" />
             <div className="details">
               <Link
                 to={`/profile/${post.userId}`}

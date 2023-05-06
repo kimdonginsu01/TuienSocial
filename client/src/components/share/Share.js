@@ -1,7 +1,6 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useContext, useState } from "react";
 import Friend from "../../assets/friend.png";
-import Image from "../../assets/img.png";
 import Map from "../../assets/map.png";
 import makeRequest from "../../axios/axios";
 import { AuthContext } from "../../context/authContext";

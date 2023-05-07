@@ -1,26 +1,29 @@
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { useContext } from "react";
 import {
-  createBrowserRouter,
-  RouterProvider,
-  Outlet,
   Navigate,
+  Outlet,
+  RouterProvider,
+  createBrowserRouter,
 } from "react-router-dom";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
-import Navbar from "./components/navbar/Navbar";
+import Chat from "./components/chat/Chat";
 import LeftBar from "./components/leftbar/LeftBar";
+import Navbar from "./components/navbar/Navbar";
 import RightBar from "./components/rightbar/RightBar";
-import Login from "./pages/login/Login";
-import Register from "./pages/register/Register";
-import Home from "./pages/home/Home";
-import Profile from "./pages/profile/Profile";
-import "./style.scss";
-import { DarkModeContext } from "./context/darkModeContext";
 import { AuthContext } from "./context/authContext";
+import { ChatContext } from "./context/chatContext";
+import { DarkModeContext } from "./context/darkModeContext";
+import Home from "./pages/home/Home";
+import Login from "./pages/login/Login";
+import Profile from "./pages/profile/Profile";
+import Register from "./pages/register/Register";
+import "./style.scss";
 
 function App() {
   const { currentUser } = useContext(AuthContext);
   const { darkMode } = useContext(DarkModeContext);
+  const { showChatbox } = useContext(ChatContext);
 
   const queryClient = new QueryClient();
 
@@ -36,6 +39,7 @@ function App() {
             </div>
             <RightBar />
           </div>
+          {showChatbox && <Chat />}
         </div>
       </QueryClientProvider>
     );

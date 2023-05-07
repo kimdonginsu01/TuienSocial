@@ -46,8 +46,6 @@ function RightBar() {
     (user) => !friendsData?.some((friend) => friend.id === user.id)
   );
 
-  console.log(potentialFriends);
-
   return (
     <div className="rightBar">
       <div className="container">

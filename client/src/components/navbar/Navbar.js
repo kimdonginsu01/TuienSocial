@@ -15,6 +15,7 @@ import makeRequest from "../../axios/axios";
 import { AuthContext } from "../../context/authContext";
 import { DarkModeContext } from "../../context/darkModeContext";
 import useDebounce from "../../hooks/useDebounce";
+import Chats from "../chats/Chats";
 import Image from "../image/Image";
 import "./Navbar.scss";
 
@@ -23,6 +24,7 @@ function Navbar() {
   const [usersList, setUsersList] = useState([]);
   const [showResult, setShowResult] = useState(false);
   const [showAction, setShowAction] = useState(false);
+  const [showChats, setShowChats] = useState(false);
   const { darkMode, toggle } = useContext(DarkModeContext);
   const { currentUser, setCurrentUser } = useContext(AuthContext);
 
@@ -62,7 +64,11 @@ function Navbar() {
 
   const handleLogout = () => {
     navigate("/login");
-    setCurrentUser({});
+    setCurrentUser();
+  };
+
+  const handleShowChats = () => {
+    setShowChats(!showChats);
   };
 
   return (
@@ -106,7 +112,12 @@ function Navbar() {
       </div>
       <div className="right">
         <PersonOutlinedIcon className="icon" />
-        <EmailOutlinedIcon className="icon" />
+        <div className="chats">
+          <EmailOutlinedIcon className="icon" onClick={handleShowChats} />
+          {showChats && (
+            <Chats showChats={showChats} handleShowChats={setShowChats} />
+          )}
+        </div>
         <NotificationsOutlinedIcon className="icon" />
         <div
           className="user"

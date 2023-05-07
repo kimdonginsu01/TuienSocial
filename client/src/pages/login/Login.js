@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 import { AuthContext } from "../../context/authContext";
@@ -20,7 +20,7 @@ const Login = () => {
       [e.target.name]: e.target.value,
     }));
   };
-  const { login } = useContext(AuthContext);
+  const { login, currentUser } = useContext(AuthContext);
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -31,6 +31,10 @@ const Login = () => {
       setErr(error.response.data);
     }
   };
+
+  useEffect(() => {
+    if (currentUser) navigate("/");
+  }, [currentUser]);
 
   return (
     <div className="login">

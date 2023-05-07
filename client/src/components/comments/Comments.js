@@ -6,6 +6,7 @@ import makeRequest from "../../axios/axios";
 import { AuthContext } from "../../context/authContext";
 import Loading from "../loading/Loading";
 import "./comments.scss";
+import Image from "../image/Image";
 
 function Comments({ postId }) {
   const [desc, setDesc] = useState("");
@@ -36,7 +37,7 @@ function Comments({ postId }) {
   return (
     <div className="comments">
       <div className="write">
-        <img src={"/upload/" + currentUser.profilePic} alt="" />
+        <Image src={currentUser.profilePic} alt="" />
         <input
           type="text"
           placeholder="write a comment"
@@ -50,8 +51,8 @@ function Comments({ postId }) {
       ) : (
         data.map((comment) => (
           <div className="comment" key={comment.id}>
-            <img src={comment.profilePic} alt="" />
-            <div className="info">
+            <Image src={comment.profilePic} alt="" />
+            <div className="uinfo">
               <span>{comment.name}</span>
               <p>{comment.desc}</p>
             </div>

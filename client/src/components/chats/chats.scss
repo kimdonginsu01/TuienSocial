@@ -1,0 +1,58 @@
+@import "../../style.scss";
+
+.chats-list {
+  @include themify($themes) {
+    position: absolute;
+    right: -20px;
+    top: calc(100% + 10px);
+    background: red;
+    min-width: 300px;
+    max-height: 360px;
+    overflow: auto;
+    box-shadow: 0px 0px 15px 1px rgba(0, 0, 0, 0.09);
+    margin-bottom: 20px;
+    padding: 10px;
+    border-radius: 20px;
+    background-color: #fff;
+
+    .userInfo {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px;
+      border-radius: 10px;
+      position: relative;
+      cursor: pointer;
+
+      &:hover {
+        background-color: #ccc;
+      }
+
+      .userImg {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      img {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        object-fit: cover;
+      }
+
+      .info {
+        display: flex;
+        flex-direction: column;
+        gap: 3px;
+
+        span {
+          font-weight: 500;
+        }
+        p {
+          color: #555;
+        }
+      }
+    }
+  }
+}

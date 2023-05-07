@@ -104,6 +104,12 @@
       align-items: center;
       gap: 20px;
 
+      .chats {
+        display: flex;
+        align-items: center;
+        position: relative;
+      }
+
       .icon {
         cursor: pointer;
       }
@@ -139,10 +145,12 @@
           position: absolute;
           background: themed("bgSoft");
           top: calc(100% + 6px);
-          left: 0;
           right: 0;
-          border-radius: 4px;
-          box-shadow: 2px 2px 4px themed("textColorSoft");
+          min-width: 160px;
+          box-shadow: 0px 0px 15px 1px rgba(0, 0, 0, 0.09);
+          padding: 10px;
+          border-radius: 20px;
+          background-color: #fff;
 
           &::before {
             content: "";
@@ -159,14 +167,22 @@
             display: flex;
             align-items: center;
             justify-content: space-evenly;
+            border-radius: 10px;
+            position: relative;
 
             &:hover {
-              background-color: themed("bg");
+              background-color: #ccc;
             }
           }
 
-          .logout {
-            border-top: 1px solid #ccc;
+          .logout::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            right: 12px;
+            left: 12px;
+            height: 1px;
+            background-color: #383838;
           }
         }
       }

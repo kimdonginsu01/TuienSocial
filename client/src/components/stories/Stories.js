@@ -32,7 +32,10 @@ function Stories() {
     <div className="stories">
       <div className="story">
         <div className="img">
-          <img src={"/upload/" + currentUser.profilePic} alt="" />
+          <img
+            src="https://images.pexels.com/photos/13916254/pexels-photo-13916254.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load"
+            alt=""
+          />
         </div>
         <span>{currentUser.name}</span>
         <button>+</button>

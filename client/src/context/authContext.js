@@ -17,11 +17,12 @@ export const AuthContextProvider = ({ children }) => {
       }
     );
 
-    setCurrentUser(() => res.data);
+    setCurrentUser((prev) => ({ ...prev, ...res.data }));
   };
 
   useEffect(() => {
-    localStorage.setItem("user", JSON.stringify(currentUser));
+    if (!currentUser) localStorage.removeItem("user");
+    else localStorage.setItem("user", JSON.stringify(currentUser));
   }, [currentUser]);
 
   return (

@@ -9,6 +9,8 @@ import likeRoutes from "./routes/likes.js";
 import postRoutes from "./routes/posts.js";
 import userRoutes from "./routes/users.js";
 import relationshipRoutes from "./routes/relationships.js";
+import chatRoutes from "./routes/chats.js";
+import messageRoutes from "./routes/messages.js";
 
 const app = express();
 
@@ -48,5 +50,7 @@ app.use("/api/likes", likeRoutes);
 app.use("/api/posts", postRoutes);
 app.use("/api/users", userRoutes);
 app.use("/api/relationships", relationshipRoutes);
+app.use("/api/chats", chatRoutes);
+app.use("/api/messages", messageRoutes);
 
 app.listen(8800, () => console.log("API working!"));

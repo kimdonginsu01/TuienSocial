@@ -115,7 +115,11 @@ function Navbar() {
         <div className="chats">
           <EmailOutlinedIcon className="icon" onClick={handleShowChats} />
           {showChats && (
-            <Chats showChats={showChats} handleShowChats={setShowChats} />
+            <Chats
+              showChats={showChats}
+              handleShowChats={setShowChats}
+              userId={currentUser.id}
+            />
           )}
         </div>
         <NotificationsOutlinedIcon className="icon" />

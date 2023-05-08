@@ -1,81 +1,36 @@
+import { useQuery } from "@tanstack/react-query";
 import React, { useContext } from "react";
-import "./chats.scss";
+import makeRequest from "../../axios/axios";
 import { ChatContext } from "../../context/chatContext";
+import "./chats.scss";
+import UserChat from "./UserChat/UserChat";
 
-function Chats({ showChats, handleShowChats }) {
+function Chats({ showChats, handleShowChats, userId }) {
   const { setShowChatbox } = useContext(ChatContext);
   const handleShowChatbox = () => {
     setShowChatbox(true);
     handleShowChats(!showChats);
   };
 
+  const { data } = useQuery({
+    queryKey: ["chats", userId],
+    queryFn: () => makeRequest.get("/chats").then((res) => res.data),
+  });
+
+  console.log(data);
+
   return (
     <div className="chats-list">
-      <div className="userInfo" onClick={handleShowChatbox}>
-        <div className="userImg">
-          <img
-            src="https://images.pexels.com/photos/3228727/pexels-photo-3228727.jpeg?auto=compress&cs=tinysrgb&w=1600"
-            alt=""
-          />
-        </div>
-        <div className="online"></div>
-        <div className="info">
-          <span>Jone Doe</span>
-          <p>Hello</p>
-        </div>
-      </div>
-      <div className="userInfo" onClick={handleShowChatbox}>
-        <div className="userImg">
-          <img
-            src="https://images.pexels.com/photos/3228727/pexels-photo-3228727.jpeg?auto=compress&cs=tinysrgb&w=1600"
-            alt=""
-          />
-        </div>
-        <div className="online"></div>
-        <div className="info">
-          <span>Jone Doe</span>
-          <p>Hello</p>
-        </div>
-      </div>
-      <div className="userInfo" onClick={handleShowChatbox}>
-        <div className="userImg">
-          <img
-            src="https://images.pexels.com/photos/3228727/pexels-photo-3228727.jpeg?auto=compress&cs=tinysrgb&w=1600"
-            alt=""
-          />
-        </div>
-        <div className="online"></div>
-        <div className="info">
-          <span>Jone Doe</span>
-          <p>Hello</p>
-        </div>
-      </div>
-      <div className="userInfo" onClick={handleShowChatbox}>
-        <div className="userImg">
-          <img
-            src="https://images.pexels.com/photos/3228727/pexels-photo-3228727.jpeg?auto=compress&cs=tinysrgb&w=1600"
-            alt=""
-          />
-        </div>
-        <div className="online"></div>
-        <div className="info">
-          <span>Jone Doe</span>
-          <p>Hello</p>
-        </div>
-      </div>
-      <div className="userInfo" onClick={handleShowChatbox}>
-        <div className="userImg">
-          <img
-            src="https://images.pexels.com/photos/3228727/pexels-photo-3228727.jpeg?auto=compress&cs=tinysrgb&w=1600"
-            alt=""
-          />
-        </div>
-        <div className="online"></div>
-        <div className="info">
-          <span>Jone Doe</span>
-          <p>Hello</p>
-        </div>
-      </div>
+      {data?.map((user, index) => (
+        <UserChat
+          key={index}
+          handleShowChatbox={handleShowChatbox}
+          messages={user}
+          receipient={
+            user.senderId === userId ? user.receipientId : user.senderId
+          }
+        />
+      ))}
     </div>
   );
 }
